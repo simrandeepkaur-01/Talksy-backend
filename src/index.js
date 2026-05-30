@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://talksy-frontend-ruddy.vercel.app"],
+    origin: ["http://localhost:5173", "https://talksy-frontend-ruddy.vercel.app", "https://talksy-frontend-three.vercel.app"],
     credentials: true,
   })
 );
