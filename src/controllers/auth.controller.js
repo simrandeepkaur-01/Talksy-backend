@@ -4,21 +4,10 @@ import bcrypt from "bcryptjs";
 import cloudinary from "../lib/cloudinary.js";
 
 export const signup = async (req, res) => {
-  const { fullName, email, username, password } = req.body;
+  const { fullName, email, password } = req.body;
   try {
     if (!fullName || !email || !password) {
       return res.status(400).json({ message: "All fields are required" });
-    }
-
-    if (username.length < 6) {
-      return res
-        .status(400)
-        .json({ message: "Username must be at least 6 characters" });
-    }
-
-    const usernameExists = await User.findOne({ username });
-    if (usernameExists) {
-      return res.status(400).json({ message: "Username already exists" });
     }
 
     if (password.length < 6) {
@@ -36,7 +25,6 @@ export const signup = async (req, res) => {
 
     const newUser = new User({
       fullName,
-      username,
       email,
       password: hashedPassword,
     });
@@ -50,7 +38,6 @@ export const signup = async (req, res) => {
         _id: newUser._id,
         fullName: newUser.fullName,
         email: newUser.email,
-        username: newUser.username,
         profilePic: newUser.profilePic,
       });
     } else {
