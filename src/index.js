@@ -16,7 +16,7 @@ app.set("trust proxy", 1);
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(cookieParser());
-app.use(
+app.use( 
   cors({
     origin: ["http://localhost:5173", "https://talksy-frontend-ruddy.vercel.app", "https://talksy-frontend-three.vercel.app"],
     credentials: true,
